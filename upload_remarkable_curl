@@ -1,0 +1,12 @@
+#!/bin/bash
+
+if [ $# != 1 ]
+then
+    echo "Usage: $0 <filename>"
+    exit 1
+fi
+
+FILENAME=$1
+# Copied from https://remarkablewiki.com/tech/webinterface#accessing_files_via_curl
+curl 'http://10.11.99.1/upload' -H 'Origin: http://10.11.99.1' -H 'Accept: */*' -H 'Referer: http://10.11.99.1/' -H 'Connection: keep-alive' -F "file=@$FILENAME;filename=$FILENAME;type=application/pdf"
+printf "\n" # Just for printing the curl message separately
